@@ -13,5 +13,11 @@ namespace AccountingBook.Controllers
         {
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult AccountingDetail()
+        {            
+            return View();
+        }
     }
 }

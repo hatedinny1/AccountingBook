@@ -9,6 +9,7 @@
         <th>@Html.DisplayNameFor(x => x.Category)</th>
         <th>@Html.DisplayNameFor(x => x.Date)</th>
         <th>@Html.DisplayNameFor(x => x.Money)</th>
+        <th>@Html.DisplayNameFor(x=>x.Remark)</th>
     </tr>
     @if (!Model.Any())
     {
@@ -25,6 +26,7 @@
                 <td>@Html.DisplayFor(model => m.Category)</td>
                 <td>@Html.DisplayFor(model => m.Date)</td>
                 <td>@Html.DisplayFor(model => m.Money)</td>
+                <td>@Html.DisplayFor(model => m.Remark)</td>
             </tr>
         }
     }   

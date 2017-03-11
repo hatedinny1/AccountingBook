@@ -32,7 +32,8 @@ namespace AccountingBook.Controllers
                 {
                     Category = "支出",
                     Date = new DateTime(2016, 1, 1),
-                    Money = 300
+                    Money = 300,
+                    Remark = "信用卡費"
                 },
                 new AccountingBookViewModel()
                 {

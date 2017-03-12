@@ -4,11 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AccountingBook.Models.ViewModel;
+using AccountingBook.Repository;
+using AccountingBook.Service;
+using PagedList;
 
 namespace AccountingBook.Controllers
 {
     public class AccountingBookController : Controller
     {
+        private readonly AccountBookService _accountBookSvc;
+        public AccountingBookController()
+        {
+            var unitOfWork = new EFUnitOfWork();
+            _accountBookSvc = new AccountBookService(unitOfWork);
+        }
         // GET: AccountingBook
         public ActionResult Index()
         {
@@ -16,41 +25,21 @@ namespace AccountingBook.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult AccountingDetail()
+        public ActionResult AccountingDetail(int page = 1)
         {
-            var accountingDetail = GetAccountingBookViewModels();
-            return View(accountingDetail);
-        }
-
-        #region FakeData
-
-        private static List<AccountingBookViewModel> GetAccountingBookViewModels()
-        {
-            var accountingDetail = new List<AccountingBookViewModel>()
-            {
-                new AccountingBookViewModel()
+            var pageSize = 10;
+            var objectResult = _accountBookSvc
+                               .LookupAll()
+                               .Select(x => new AccountingBookViewModel
                 {
-                    Category = "支出",
-                    Date = new DateTime(2016, 1, 1),
-                    Money = 300,
-                    Remark = "信用卡費"
-                },
-                new AccountingBookViewModel()
-                {
-                    Category = "支出",
-                    Date = new DateTime(2016, 1, 2),
-                    Money = 1600
-                },
-                new AccountingBookViewModel()
-                {
-                    Category = "支出",
-                    Date = new DateTime(2016, 1, 3),
-                    Money = 800
-                },
-            };
-            return accountingDetail;
-        }
-
-        #endregion
+                                   Category = x.Categoryyy % 2 == 0 ? "收入" : "支出",
+                                   Date = x.Dateee,
+                                   Money = x.Amounttt,
+                                   Remark = x.Remarkkk
+                               })
+                               .OrderBy(x => x.Date)
+                               .ToPagedList(page, pageSize);
+            return View(objectResult);
+        }        
     }
 }

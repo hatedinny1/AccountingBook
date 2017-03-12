@@ -1,9 +1,15 @@
 ﻿@{
     ViewBag.Title = "Accounting Book";
 }
+@section styles
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
+    
+    @Styles.Render("~/Content/accountingBook.css")
+}
+
 <br />
 <div class="container body-content">
-
     <div class="well">
         <form class="form-horizontal">
             <div class="form-group">
@@ -44,7 +50,23 @@
 
     <div class="row">
         <div class="col-md-12">
-            @Html.Action("AccountingDetail")            
+            @Html.Action("AccountingDetail")
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+    <script>
+        $('.remark-popover').webuiPopover('destroy').webuiPopover({
+            title: 'title',
+            animation: 'pop',
+            placement:'bottom',
+            width: 300,
+            height: 200
+        });
+    </script>
+
+}
+

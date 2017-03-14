@@ -7,17 +7,18 @@ using System.Web;
 using AccountingBook.Models;
 using AccountingBook.Repository;
 using AccountingBook.Repository.Interface;
-
+using AccountingBook.Service.Interface;
 namespace AccountingBook.Service
-{
-    public class AccountBookService
+{    
+
+    public class AccountBookService : IAccountBookService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<AccountBook> _repository;
-        public AccountBookService(IUnitOfWork untOfWork)
+        public AccountBookService(IUnitOfWork untOfWork,IRepository<AccountBook> repository)
         {
             this._unitOfWork = untOfWork;
-            this._repository = new Repository<AccountBook>(untOfWork);
+            this._repository = repository;
         }
         public IQueryable<AccountBook> LookupAll()
         {

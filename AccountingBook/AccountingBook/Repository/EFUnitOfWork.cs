@@ -8,9 +8,9 @@ namespace AccountingBook.Repository
     {
         public DbContext Context { get; set; }
 
-        public EFUnitOfWork()
+        public EFUnitOfWork(DbContext dbContext)
         {
-            Context = new AccountingBookModel();
+            Context = dbContext;
         }
 
         public void Save()

@@ -5,19 +5,24 @@ using System.Web;
 using System.Web.Mvc;
 using AccountingBook.Models.ViewModel;
 using AccountingBook.Repository;
+using AccountingBook.Repository.Interface;
 using AccountingBook.Service;
+using AccountingBook.Service.Interface;
 using PagedList;
 
 namespace AccountingBook.Controllers
 {
     public class AccountingBookController : Controller
     {
-        private readonly AccountBookService _accountBookSvc;
-        public AccountingBookController()
+        private readonly IAccountBookService _accountBookSvc;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AccountingBookController(IAccountBookService accountBookSvc, IUnitOfWork unitOfWork)
         {
-            var unitOfWork = new EFUnitOfWork();
-            _accountBookSvc = new AccountBookService(unitOfWork);
+            _accountBookSvc = accountBookSvc;
+            _unitOfWork = unitOfWork;
         }
+
         // GET: AccountingBook
         public ActionResult Index()
         {
@@ -31,8 +36,8 @@ namespace AccountingBook.Controllers
             var objectResult = _accountBookSvc
                                .LookupAll()
                                .Select(x => new AccountingBookViewModel
-                {
-                                   Category = x.Categoryyy % 2 == 0 ? "收入" : "支出",
+                               {
+                                   Category = x.Categoryyy % 2 == 0 ? "支出" : "收入",
                                    Date = x.Dateee,
                                    Money = x.Amounttt,
                                    Remark = x.Remarkkk
@@ -40,6 +45,6 @@ namespace AccountingBook.Controllers
                                .OrderBy(x => x.Date)
                                .ToPagedList(page, pageSize);
             return View(objectResult);
-        }        
+        }
     }
 }

@@ -1,4 +1,3 @@
-# AccountingBook
 # ASP.NET MVC 記帳本
 
 #### demo網址 : <a href="http://accountingbook.azurewebsites.net/AccountingBook" target="_blank">http://accountingbook.azurewebsites.net/AccountingBook</a>
@@ -28,5 +27,10 @@
 
 * UnitOfWork
 * Repository
+
+#### 個人挑戰 (done)
+
+* IOC & DI ( 使用 Unity容器 )
+* Unit of Work 生命週期調整
 
 ---

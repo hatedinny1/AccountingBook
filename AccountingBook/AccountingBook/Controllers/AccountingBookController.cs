@@ -15,12 +15,10 @@ namespace AccountingBook.Controllers
     public class AccountingBookController : Controller
     {
         private readonly IAccountBookService _accountBookSvc;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountingBookController(IAccountBookService accountBookSvc, IUnitOfWork unitOfWork)
+        public AccountingBookController(IAccountBookService accountBookSvc)
         {
             _accountBookSvc = accountBookSvc;
-            _unitOfWork = unitOfWork;
         }
 
         // GET: AccountingBook
@@ -30,14 +28,13 @@ namespace AccountingBook.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult AccountingDetail(int page = 1)
-        {
-            var pageSize = 10;
+        public ActionResult AccountingDetail(int page = 1,int pageSize = 10)
+        {            
             var objectResult = _accountBookSvc
                                .LookupAll()
                                .Select(x => new AccountingBookViewModel
                                {
-                                   Category = x.Categoryyy % 2 == 0 ? "支出" : "收入",
+                                   Category = x.Categoryyy == 0 ? "支出" : "收入",
                                    Date = x.Dateee,
                                    Money = x.Amounttt,
                                    Remark = x.Remarkkk

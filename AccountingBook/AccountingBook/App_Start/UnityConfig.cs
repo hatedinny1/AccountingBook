@@ -1,4 +1,5 @@
 using System;
+using System.Data.Entity;
 using System.Reflection;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -41,11 +42,13 @@ namespace AccountingBook.App_Start
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-            var _dbcontext = new AccountingBookModel();
+            //DbContext
+            container.RegisterType<DbContext, AccountingBookModel>(
+                new PerRequestLifetimeManager());
 
+            //Unit of Work
             container.RegisterType<IUnitOfWork, EFUnitOfWork>(
-                new PerRequestLifetimeManager(),
-                new InjectionConstructor(_dbcontext));
+                new PerRequestLifetimeManager());
 
             //Repository
             container.RegisterType(

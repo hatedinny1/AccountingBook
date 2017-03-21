@@ -1,3 +1,11 @@
 ﻿.remark-content {
     word-break: break-all;
 }
+
+.color-blue {
+    color: blue;
+}
+
+.color-red {
+    color: red;
+}

@@ -232,6 +232,9 @@
       <DependentUpon>SkillTreeHomework.mdf</DependentUpon>
     </Content>
     <Content Include="Content\accountingBook.css" />
+    <Content Include="Content\accountingBook.min.css">
+      <DependentUpon>accountingBook.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -239,8 +242,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\accountingBook.js" />
+    <Content Include="Scripts\accountingBook.min.js">
+      <DependentUpon>accountingBook.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Code\Category.cshtml" />
+    <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\AccountingBook - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\AccountingBook - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

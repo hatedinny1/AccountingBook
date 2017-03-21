@@ -1,0 +1,25 @@
+﻿@functions
+{
+
+/// <summary>
+/// Category 顯示處理，{收入： 藍色，支出： 紅色}
+/// </summary>
+/// <param name="category"></param>
+
+}
+
+@helper DisplayFor(string category)
+{
+switch (category)
+{
+    case "收入":
+            <span class="color-blue">收入</span>
+        break;
+    case "支出":
+            <span class="color-red">支出</span>
+        break;
+    default:
+            <span>--</span>
+        break;
+}
+}

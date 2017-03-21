@@ -4,8 +4,7 @@
 @section styles
 {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
-
-    @Styles.Render("~/Content/accountingBook.css")
+    <link href="~/Content/accountingBook.min.css" rel="stylesheet" />
 }
 
 <br />
@@ -58,13 +57,5 @@
 @section scripts
 {
     <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
-    <script>
-        $('.remark-popover').webuiPopover('destroy').webuiPopover({
-            title: 'title',
-            animation: 'pop',
-            placement: 'bottom',
-            width: 300,
-            height: 200
-        });
-    </script>
+    <script src="~/Scripts/accountingBook.min.js"></script>    
 }

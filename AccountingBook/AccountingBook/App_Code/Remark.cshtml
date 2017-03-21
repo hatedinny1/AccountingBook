@@ -1,0 +1,15 @@
+﻿@helper Display(string remark, int maxLength = 80)
+{
+if (remark.Length > maxLength)
+{
+        <span>@remark.Substring(0, maxLength)</span>
+        <a href="#" class="remark-popover" data-title="備註">...more</a>
+        <div class="webui-popover-content">
+            <p class="remark-content">@remark</p>
+        </div>
+}
+else
+{
+        <span>@remark</span>
+}
+}

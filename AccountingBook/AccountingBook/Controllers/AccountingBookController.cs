@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccountingBook.Models.Enum;
 using AccountingBook.Models.ViewModel;
 using AccountingBook.Repository;
 using AccountingBook.Repository.Interface;
@@ -28,13 +29,13 @@ namespace AccountingBook.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult AccountingDetail(int page = 1,int pageSize = 10)
-        {            
+        public ActionResult AccountingDetail(int page = 1, int pageSize = 10)
+        {
             var objectResult = _accountBookSvc
                                .LookupAll()
                                .Select(x => new AccountingBookViewModel
                                {
-                                   Category = x.Categoryyy == 0 ? "支出" : "收入",
+                                   Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
                                    Date = x.Dateee,
                                    Money = x.Amounttt,
                                    Remark = x.Remarkkk

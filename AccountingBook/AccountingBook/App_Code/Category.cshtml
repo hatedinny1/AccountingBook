@@ -1,22 +1,14 @@
-﻿@functions
-{
+﻿@using AccountingBook.Models.Enum
 
-/// <summary>
-/// Category 顯示處理，{收入： 藍色，支出： 紅色}
-/// </summary>
-/// <param name="category"></param>
-
-}
-
-@helper DisplayFor(string category)
+@helper Display(CategoryEnum category)
 {
 switch (category)
 {
-    case "收入":
-            <span class="color-blue">收入</span>
-        break;
-    case "支出":
+    case CategoryEnum.Expenditure:
             <span class="color-red">支出</span>
+        break;
+    case CategoryEnum.Income:
+            <span class="color-blue">收入</span>
         break;
     default:
             <span>--</span>

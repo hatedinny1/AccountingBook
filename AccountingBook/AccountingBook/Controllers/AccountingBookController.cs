@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccountingBook.Models;
 using AccountingBook.Models.Enum;
 using AccountingBook.Models.ViewModel;
 using AccountingBook.Repository;
@@ -40,9 +42,30 @@ namespace AccountingBook.Controllers
                                    Money = x.Amounttt,
                                    Remark = x.Remarkkk
                                })
-                               .OrderBy(x => x.Date)
+                               .OrderByDescending(x => x.Date)
                                .ToPagedList(page, pageSize);
             return View(objectResult);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(AccountingBookViewModel accountingBookViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = new AccountBook()
+                {
+                    Id = Guid.NewGuid(),
+                    Categoryyy = (int)accountingBookViewModel.Category,
+                    Amounttt = accountingBookViewModel.Money,
+                    Dateee = accountingBookViewModel.Date,
+                    Remarkkk = accountingBookViewModel.Remark
+                };
+                this._accountBookSvc.Create(model);
+                this._accountBookSvc.Commit();
+                ModelState.Clear();
+            }
+            return View("Index");
         }
     }
 }

@@ -206,6 +206,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountingBookController.cs" />
+    <Compile Include="Controllers\AccountingBookV2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
@@ -261,6 +262,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -305,6 +308,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\AccountingBook\Index.cshtml" />
     <Content Include="Views\AccountingBook\AccountingDetail.cshtml" />
+    <Content Include="Views\AccountingBookV2\Index.cshtml" />
+    <Content Include="Views\AccountingBookV2\AccountingDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Validate\" />

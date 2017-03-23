@@ -26,6 +26,7 @@
                 <li>@Html.ActionLink("關於", "About", "Home")</li>
                 <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
                 <li>@Html.ActionLink("記帳本", "Index", "AccountingBook")</li>
+                <li>@Html.ActionLink("記帳本v2", "Index", "AccountingBookV2")</li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
@@ -43,6 +44,7 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", false)
 </body>

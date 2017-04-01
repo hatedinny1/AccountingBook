@@ -29,17 +29,7 @@ namespace AccountingBook.Controllers
         [ChildActionOnly]
         public ActionResult AccountingDetail(int page = 1, int pageSize = 10)
         {
-            var objectResult = _accountBookSvc
-                               .LookupAll()
-                               .Select(x => new AccountingBookViewModel
-                               {
-                                   Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
-                                   Date = x.Dateee,
-                                   Money = x.Amounttt,
-                                   Remark = x.Remarkkk
-                               })
-                               .OrderByDescending(x => x.Date)
-                               .ToPagedList(page, pageSize);
+            var objectResult = GetPageOfAccountingBook(page, pageSize);
             return PartialView(objectResult);
         }
 
@@ -61,19 +51,23 @@ namespace AccountingBook.Controllers
                 this._accountBookSvc.Commit();
             }
 
-            var objectResult = _accountBookSvc
-                               .LookupAll()
-                               .Select(x => new AccountingBookViewModel
-                               {
-                                   Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
-                                   Date = x.Dateee,
-                                   Money = x.Amounttt,
-                                   Remark = x.Remarkkk
-                               })
-                               .OrderByDescending(x => x.Date)
-                               .ToPagedList(1, 10);
-
+            var objectResult = GetPageOfAccountingBook();
             return PartialView("AccountingDetail", objectResult);
+        }
+
+        private IPagedList<AccountingBookViewModel> GetPageOfAccountingBook(int pageNumber = 1, int pageSize = 10)
+        {
+            return _accountBookSvc
+                   .LookupAll()
+                   .Select(x => new AccountingBookViewModel
+                   {
+                       Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
+                       Date = x.Dateee,
+                       Money = x.Amounttt,
+                       Remark = x.Remarkkk
+                   })
+                   .OrderByDescending(x => x.Date)
+                   .ToPagedList(pageNumber, pageSize);
         }
     }
 }

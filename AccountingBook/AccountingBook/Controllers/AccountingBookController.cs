@@ -62,10 +62,9 @@ namespace AccountingBook.Controllers
                     Remarkkk = accountingBookViewModel.Remark
                 };
                 this._accountBookSvc.Create(model);
-                this._accountBookSvc.Commit();
-                ModelState.Clear();
+                this._accountBookSvc.Commit();                
             }
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }

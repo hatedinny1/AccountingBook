@@ -32,7 +32,7 @@
             <div class="form-group">
                 @Html.LabelFor(x => x.Date, new { @class = "col-sm-2 control-label" })
                 <div class="col-sm-10">
-                    @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "form-control", placeholder = "日期" } })
+                    @Html.EditorFor(x => x.Date)
                     @Html.ValidationMessageFor(x => x.Date, null, new { @class = "text-danger" })
                 </div>
             </div>

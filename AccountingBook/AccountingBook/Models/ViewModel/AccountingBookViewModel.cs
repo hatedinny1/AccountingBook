@@ -16,10 +16,9 @@ namespace AccountingBook.Models.ViewModel
         [Required]
         public CategoryEnum? Category { get; set; }
 
-        [DisplayName("日期")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayName("日期")]      
         [Required]
+        [DataType(DataType.DateTime)]
         [RemoteDoublePlus("NotAfterToday", "Validate", AreaReference.UseRoot,ErrorMessage = "日期不得於今日之後。")]
         public DateTime Date { get; set; }
 

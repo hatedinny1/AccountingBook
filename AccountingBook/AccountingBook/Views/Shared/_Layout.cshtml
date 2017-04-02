@@ -23,11 +23,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("記帳本", "Index", "AccountingBook")</li>
-                    <li>@Html.ActionLink("記帳本v2", "Index", "AccountingBookV2")</li>
+                    <li>@ActionLink.WithArea("首頁", "Index", "Home")</li>
+                    <li>@ActionLink.WithArea("關於", "About", "Home")</li>
+                    <li>@ActionLink.WithArea("連絡方式", "Contact", "Home")</li>
+                    <li>@ActionLink.WithArea("記帳本", "Index", "AccountingBook")</li>
+                    <li>@ActionLink.WithArea("記帳本v2", "Index", "AccountingBookV2")</li>
+                    <li>@ActionLink.WithArea("記帳本 Admin", "Index", "AccountingBook", "Admin")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

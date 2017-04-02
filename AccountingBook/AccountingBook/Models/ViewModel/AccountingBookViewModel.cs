@@ -12,6 +12,8 @@ namespace AccountingBook.Models.ViewModel
 {
     public class AccountingBookViewModel
     {
+        public Guid Id { get; set; }
+
         [DisplayName("類別")]
         [Required]
         public CategoryEnum? Category { get; set; }

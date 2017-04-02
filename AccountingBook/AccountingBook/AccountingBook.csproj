@@ -204,6 +204,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountingBookController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountingBookController.cs" />
     <Compile Include="Controllers\AccountingBookV2Controller.cs" />
@@ -257,6 +259,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\Category.cshtml" />
     <Content Include="App_Code\Remark.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\AccountingBook\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountingBook\AccountingDetail.cshtml" />
+    <Content Include="App_Code\ActionLink.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\AccountingBook - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\AccountingBook - Web Deploy.pubxml" />
@@ -317,6 +323,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Validate\" />
   </ItemGroup>
   <ItemGroup>

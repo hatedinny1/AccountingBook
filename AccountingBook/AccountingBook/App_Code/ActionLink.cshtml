@@ -1,12 +1,12 @@
 ﻿@using System.Web.Mvc.Html
 
-@helper WithArea(string linkText, string action, string controller, string area = null)
+@helper WithArea(string linkText, string action, string controller, string area = null, object htmlAttributes = null, string id = null)
 {
 var html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
 
     @( area == null ?
-    html.ActionLink(linkText, action, controller, new {area = ""}, null) :
-    html.ActionLink(linkText, action, controller, new {area}, null)
+    html.ActionLink(linkText, action, controller, new { area = "", id }, htmlAttributes) :
+    html.ActionLink(linkText, action, controller, new { area, id }, htmlAttributes)
     )
 }
 

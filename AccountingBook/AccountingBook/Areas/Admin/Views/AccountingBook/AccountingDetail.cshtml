@@ -9,6 +9,7 @@
 <table class="table table-bordered table-hover">
     <tr>
         <th>#</th>
+        <th>操作</th>
         <th>@Html.DisplayNameFor(x => x.Category)</th>
         <th>@Html.DisplayNameFor(x => x.Date)</th>
         <th>@Html.DisplayNameFor(x => x.Money)</th>
@@ -26,6 +27,10 @@
         {
             <tr>
                 <td>@(index++)</td>
+                <td>
+                    @ActionLink.WithArea("Edit", "Edit", "AccountingBook", "Admin", new { @class = "btn btn-default" }, m.Id.ToString())
+                    @ActionLink.WithArea("Delete", "Delete", "AccountingBook", "Admin", new { @class = "btn btn-danger" }, m.Id.ToString())                    
+                </td>
                 <td>@Category.Display(m.Category)</td>
                 <td>@Html.DisplayFor(model => m.Date)</td>
                 <td>@Html.DisplayFor(model => m.Money)</td>

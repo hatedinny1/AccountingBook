@@ -263,6 +263,8 @@
     <Content Include="Areas\Admin\Views\AccountingBook\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AccountingBook\AccountingDetail.cshtml" />
     <Content Include="App_Code\ActionLink.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountingBook\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountingBook\Delete.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\AccountingBook - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\AccountingBook - Web Deploy.pubxml" />

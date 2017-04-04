@@ -1,7 +1,7 @@
 ﻿@model DateTime?
 
 @{
-    var value = Model?.ToString("yyyy-MM-dd") ?? string.Empty;
+    var value = Model?.ToString("yyyy-MM-dd HH:mm") ?? string.Empty;
 }
 
 @Html.TextBox("", value, new

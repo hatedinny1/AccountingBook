@@ -34,6 +34,7 @@ namespace AccountingBook.Areas.Admin.Controllers
                                .LookupAll()
                                .Select(x => new AccountingBookViewModel
                                {
+                                   Id = x.Id,
                                    Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
                                    Date = x.Dateee,
                                    Money = x.Amounttt,
@@ -62,6 +63,76 @@ namespace AccountingBook.Areas.Admin.Controllers
                 this._accountBookSvc.Commit();
             }
             return RedirectToAction("Index");
+        }
+        public ActionResult Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var model = _accountBookSvc.GetSingle(x => x.Id == id);
+            if (model == default(AccountBook))
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = BindAccountingBookViewModelToModel(model);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AccountingBookViewModel accountingBookViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var source = _accountBookSvc.GetSingle(x => x.Id == accountingBookViewModel.Id);
+                source.Categoryyy = (int)accountingBookViewModel.Category;
+                source.Amounttt = accountingBookViewModel.Money;
+                source.Dateee = accountingBookViewModel.Date;
+                source.Remarkkk = accountingBookViewModel.Remark;
+                _accountBookSvc.Commit();
+                return RedirectToAction("Index");
+            }
+            return View(accountingBookViewModel);
+        }
+
+        public ActionResult Delete(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var model = _accountBookSvc.GetSingle(x => x.Id == id);
+            if (model == default(AccountBook))
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = BindAccountingBookViewModelToModel(model);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmedDelete(Guid? id)
+        {
+            var model = _accountBookSvc.GetSingle(x => x.Id == id);
+            _accountBookSvc.Remove(model);
+            _accountBookSvc.Commit();
+            return RedirectToAction("Index");
+        }
+
+        private static AccountingBookViewModel BindAccountingBookViewModelToModel(AccountBook model)
+        {
+            return new AccountingBookViewModel
+            {
+                Category = model.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
+                Date = model.Dateee,
+                Money = model.Amounttt,
+                Remark = model.Remarkkk
+            };
         }
     }
 }

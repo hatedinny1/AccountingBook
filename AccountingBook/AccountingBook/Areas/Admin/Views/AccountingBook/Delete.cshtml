@@ -1,0 +1,49 @@
+﻿@model AccountingBook.Models.ViewModel.AccountingBookViewModel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+<h3>是否要刪除此筆資料呢？</h3>
+<div class="container body-content">
+    <div class="well">
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+
+                    @Html.LabelFor(x => x.Category, null, new { @class = "col-sm-2 text-center" })
+                    <div class="col-sm-10">
+                        @Category.Display(Model.Category)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Money, null, new { @class = "col-sm-2 text-center" })
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(x => x.Money)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Date, null, new { @class = "col-sm-2 text-center" })
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(x => x.Date)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Remark, null, new { @class = "col-sm-2 text-center" })
+                    <div class="col-sm-10">
+                        @Html.DisplayFor(x => x.Remark)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-8 col-sm-4">
+                        <button type="submit" class="btn btn-danger">刪除資料</button>
+                        @ActionLink.WithArea("返回記帳本", "Index", "AccountingBook", "Admin", new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            }
+        </div>        
+    </div>
+</div>

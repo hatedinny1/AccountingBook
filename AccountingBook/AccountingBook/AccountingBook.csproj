@@ -212,6 +212,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
+    <Compile Include="Filters\AuthorizeAdminOnly.cs" />
     <Compile Include="Filters\AuthorizePlusAttribute.cs" />
     <Compile Include="Filters\RemoteDoublePlusAttribute.cs" />
     <Compile Include="Filters\RemotePlusAttribute.cs" />

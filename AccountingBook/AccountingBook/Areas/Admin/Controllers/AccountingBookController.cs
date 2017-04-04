@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AccountingBook.Filters;
 using AccountingBook.Models;
 using AccountingBook.Models.Enum;
 using AccountingBook.Service.Interface;
@@ -12,6 +13,7 @@ using PagedList;
 
 namespace AccountingBook.Areas.Admin.Controllers
 {
+    [AuthorizeAdminOnly(Users = "hatedinny1@gmail.com")]
     public class AccountingBookController : Controller
     {
         private readonly IAccountBookService _accountBookSvc;

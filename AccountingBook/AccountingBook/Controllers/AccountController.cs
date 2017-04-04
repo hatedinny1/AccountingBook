@@ -17,15 +17,13 @@ namespace AccountingBook.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IAuthenticationManager _authenticationManager;
 
-        public AccountController()
-        {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,IAuthenticationManager authenticationManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this._authenticationManager = authenticationManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -322,7 +320,7 @@ namespace AccountingBook.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var loginInfo = await this._authenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");
@@ -362,7 +360,7 @@ namespace AccountingBook.Controllers
             if (ModelState.IsValid)
             {
                 // 從外部登入提供者處取得使用者資訊
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                var info = await this._authenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
@@ -391,7 +389,7 @@ namespace AccountingBook.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this._authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 
@@ -426,14 +424,6 @@ namespace AccountingBook.Controllers
         #region Helper
         // 新增外部登入時用來當做 XSRF 保護
         private const string XsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
 
         private void AddErrors(IdentityResult result)
         {

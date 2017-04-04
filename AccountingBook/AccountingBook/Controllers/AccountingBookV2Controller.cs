@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccountingBook.Filters;
 using AccountingBook.Models;
 using AccountingBook.Models.Enum;
 using AccountingBook.Models.ViewModel;
@@ -33,6 +34,7 @@ namespace AccountingBook.Controllers
             return PartialView(objectResult);
         }
 
+        [AuthorizePlus]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(AccountingBookViewModel accountingBookViewModel)

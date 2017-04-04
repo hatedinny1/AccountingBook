@@ -9,6 +9,10 @@ using AccountingBook.Repository;
 using AccountingBook.Repository.Interface;
 using AccountingBook.Service;
 using AccountingBook.Service.Interface;
+using Microsoft.Owin.Security;
+using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AccountingBook.App_Start
 {
@@ -42,6 +46,16 @@ namespace AccountingBook.App_Start
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+            container.RegisterType<ApplicationDbContext>();
+            container.RegisterType<ApplicationSignInManager>();
+            container.RegisterType<ApplicationUserManager>();
+
+            container.RegisterType<IAuthenticationManager>(
+                    new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
+
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
+                    new InjectionConstructor(typeof(ApplicationDbContext)));
+
             //DbContext
             container.RegisterType<DbContext, AccountingBookModel>(
                 new PerRequestLifetimeManager());

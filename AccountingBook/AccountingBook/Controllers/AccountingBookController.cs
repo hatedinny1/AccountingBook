@@ -4,6 +4,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccountingBook.Filters;
 using AccountingBook.Models;
 using AccountingBook.Models.Enum;
 using AccountingBook.Models.ViewModel;
@@ -47,6 +48,7 @@ namespace AccountingBook.Controllers
             return View(objectResult);
         }
 
+        [AuthorizePlus]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(AccountingBookViewModel accountingBookViewModel)

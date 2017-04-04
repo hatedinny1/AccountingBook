@@ -33,7 +33,7 @@
 * IOC & DI ( 使用 Unity容器 )
 * Unit of Work 生命週期調整
 
-
+---
 
 ## Version 3 (done)
 
@@ -52,3 +52,21 @@
 * 將記帳本的寫入功能改為 AJAX。(done)
 ###### 你將會遇到以下問題 
 * 如何片段更新下方 List (done)
+
+---
+
+## Version 4 (done)
+
+#### 初階版 (done)
+* 日期欄位加入選擇器 (done)
+* 金額必須用選的 (done)
+* 實做 RSS
+* 增加管理專用的 Area (done)
+  * 管理員可以編輯所有的歷史資料 (done)
+  * 非管理員進入會「跳回首頁」(done)
+* 登入才可以寫入資料 (done)
+
+#### 進階版 (done)
+* 如果你已經將寫入改為 AJAX 請嘗試維持 AJAX實做這塊。(done)
+
+---

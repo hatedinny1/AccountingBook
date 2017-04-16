@@ -22,15 +22,16 @@ namespace AccountingBook.Controllers
         }
 
         // GET: AccountingBookV2
+        [Route("skilltreeV2/{year:int?}/{month:int?}")]
         public ActionResult Index()
         {
             return View();
         }
 
         [ChildActionOnly]
-        public ActionResult AccountingDetail(int page = 1, int pageSize = 10)
+        public ActionResult AccountingDetail(int page = 1, int pageSize = 10, int? year = null, int? month = null)
         {
-            var objectResult = GetPageOfAccountingBook(page, pageSize);
+            var objectResult = GetPageOfAccountingBook(page, pageSize, year, month);
             return PartialView(objectResult);
         }
 
@@ -57,19 +58,35 @@ namespace AccountingBook.Controllers
             return PartialView("AccountingDetail", objectResult);
         }
 
-        private IPagedList<AccountingBookViewModel> GetPageOfAccountingBook(int pageNumber = 1, int pageSize = 10)
+        private IPagedList<AccountingBookViewModel> GetPageOfAccountingBook(int pageNumber = 1, int pageSize = 10, int? year = null, int? month = null)
         {
-            return _accountBookSvc
-                   .LookupAll()
-                   .Select(x => new AccountingBookViewModel
-                   {
-                       Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
-                       Date = x.Dateee,
-                       Money = x.Amounttt,
-                       Remark = x.Remarkkk
-                   })
+            var accountingBookData = GetAccountBookViewModel();
+
+            if (year.HasValue && month.HasValue)
+            {
+                var startDate = new DateTime(year.Value, month.Value, 1);
+                var endDate = startDate.AddMonths(1);
+                accountingBookData =
+                    GetAccountBookViewModel()
+                    .Where(x => x.Date >= startDate.Date && x.Date < endDate.Date);
+            }
+
+            return accountingBookData
                    .OrderByDescending(x => x.Date)
                    .ToPagedList(pageNumber, pageSize);
+        }
+
+        private IQueryable<AccountingBookViewModel> GetAccountBookViewModel()
+        {
+            return _accountBookSvc
+                .LookupAll()
+                .Select(x => new AccountingBookViewModel
+                {
+                    Category = x.Categoryyy == 0 ? CategoryEnum.Expenditure : CategoryEnum.Income,
+                    Date = x.Dateee,
+                    Money = x.Amounttt,
+                    Remark = x.Remarkkk
+                });
         }
     }
 }

@@ -70,3 +70,16 @@
 * 如果你已經將寫入改為 AJAX 請嘗試維持 AJAX實做這塊。(done)
 
 ---
+
+## Version 5 (done)
+
+#### 初階版 (done)
+* 實做分頁功能(done)
+  * 將記帳簿路由改為改為 SkillTree(done)
+  * EX：http://localhost/skilltree
+* 增加年月列表功能(done)
+  * 可指定年月顯示該年月的所有收支(done)
+  * 輸入 http://localhost/skilltree/yyyy/mm
+  * 可看到該年月收支(done)
+
+---
